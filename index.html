@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="&lt;model-viewer&gt; template">
+
+		<link type="text/css" href="./styles.css" rel="stylesheet"/>
+		<title>FerriWork</title>
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link type="text/css" rel="stylesheet" href="css/slick.css"/>
+		<link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+		<link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+    </head>
+	<body>
+		<!-- HEADER -->
+		<header>
+
+			<!-- MAIN HEADER -->
+			<div id="header">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<!-- LOGO -->
+						<div class="col-md-3">
+							<div class="header-logo">
+								<a href="#" class="logo">
+									<img src="./img/logo.png" alt="">
+									<span>FerriWork</span>
+								</a>
+							</div>
+						</div>
+						<!-- /LOGO -->
+
+						<!-- SEARCH BAR -->
+						<div class="col-md-6">
+							<div class="header-search">
+								<form>
+									<select class="input-select search-category">
+									</select>
+									<input class="input search" placeholder="Busca Aquí">
+									<button class="search-btn">Buscar</button>
+								</form>
+							</div>
+						</div>
+						<!-- /SEARCH BAR -->
+
+						<!-- ACCOUNT -->
+						<div class="col-md-3 clearfix">
+							<div class="header-ctn">
+								<!-- Wishlist -->
+								<!-- <div>
+									<a href="#">
+										<i class="fa fa-heart-o"></i>
+										<span>Your Wishlist</span>
+										<div class="qty">2</div>
+									</a>
+								</div> -->
+								<!-- /Wishlist -->
+
+								<!-- Cart -->
+								<div class="dropdown">
+									<a class="dropdown-toggle" id="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+										<i class="fa fa-shopping-cart"></i>
+										<span>Mi Carrito</span>
+										<div class="qty">0</div>
+									</a>
+									<div class="cart-dropdown">
+										<div class="cart-list">
+										</div>
+										<div class="cart-summary">
+											<small></small>
+											<h5></h5>
+										</div>
+										<div class="cart-btns">
+											<button class="remove-carrito">Limpiar Carrito</button>
+											<button id="btnComprar">Comprar <i class="fa fa-arrow-circle-right"></i></button>
+										</div>
+									</div>
+								</div>
+								<!-- /Cart -->
+
+								<!-- Menu Toogle -->
+								<div class="menu-toggle">
+									<a href="#">
+										<i class="fa fa-bars"></i>
+										<span>Menu</span>
+									</a>
+								</div>
+								<!-- /Menu Toogle -->
+							</div>
+						</div>
+						<!-- /ACCOUNT -->
+					</div>
+					<!-- row -->
+				</div>
+				<!-- container -->
+			</div>
+			<!-- /MAIN HEADER -->
+		</header>
+		<!-- /HEADER -->
+
+		<!-- NAVIGATION -->
+		<nav id="navigation">
+			<!-- container -->
+			<div class="container">
+				<!-- responsive-nav -->
+				<div id="responsive-nav">
+					<!-- NAV -->
+					<ul class="main-nav nav navbar-nav">
+					</ul>
+					<!-- /NAV -->
+				</div>
+				<!-- /responsive-nav -->
+			</div>
+			<!-- /container -->
+		</nav>
+		<!-- /NAVIGATION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row collections">
+					<!-- collections -->
+
+					<!-- /collections -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">Nuevos Productos</h3>
+							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+<!--									<li class="active"><a data-toggle="tab" href="#tab1">Electricas</a></li>-->
+<!--									<li><a data-toggle="tab" href="#tab2">Inalambricas</a></li>-->
+<!--									<li><a data-toggle="tab" href="#tab3">Manuales</a></li>-->
+<!--									<li><a data-toggle="tab" href="#tab4">Mecanicas</a></li>-->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab1" class="tab-pane active">
+									<div class="products-slick nuevos-productos" data-nav="#slick-nav-1">
+									</div>
+									<div id="slick-nav-1" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- HOT DEAL SECTION -->
+<!--		<div id="hot-deal" class="section">-->
+<!--			&lt;!&ndash; container &ndash;&gt;-->
+<!--			<div class="container">-->
+<!--				&lt;!&ndash; row &ndash;&gt;-->
+<!--				<div class="row">-->
+<!--					<div class="col-md-12">-->
+<!--						<div class="hot-deal">-->
+<!--							<ul class="hot-deal-countdown">-->
+<!--								<li>-->
+<!--									<div>-->
+<!--										<h3>02</h3>-->
+<!--										<span>Days</span>-->
+<!--									</div>-->
+<!--								</li>-->
+<!--								<li>-->
+<!--									<div>-->
+<!--										<h3>10</h3>-->
+<!--										<span>Hours</span>-->
+<!--									</div>-->
+<!--								</li>-->
+<!--								<li>-->
+<!--									<div>-->
+<!--										<h3>34</h3>-->
+<!--										<span>Mins</span>-->
+<!--									</div>-->
+<!--								</li>-->
+<!--								<li>-->
+<!--									<div>-->
+<!--										<h3>60</h3>-->
+<!--										<span>Secs</span>-->
+<!--									</div>-->
+<!--								</li>-->
+<!--							</ul>-->
+<!--							<h2 class="text-uppercase">hot deal this week</h2>-->
+<!--							<p>New Collection Up to 50% OFF</p>-->
+<!--							<a class="primary-btn cta-btn" href="#">Shop now</a>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; /row &ndash;&gt;-->
+<!--			</div>-->
+<!--			&lt;!&ndash; /container &ndash;&gt;-->
+<!--		</div>-->
+		<!-- /HOT DEAL SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+
+					<!-- section title -->
+					<div class="col-md-12">
+						<div class="section-title">
+							<h3 class="title">OFERTAS</h3>
+							<div class="section-nav">
+								<ul class="section-tab-nav tab-nav">
+<!--									<li class="active"><a data-toggle="tab" href="#tab1">Electricas</a></li>-->
+<!--									<li><a data-toggle="tab" href="#tab2">Inalambricas</a></li>-->
+<!--									<li><a data-toggle="tab" href="#tab3">Manuales</a></li>-->
+<!--									<li><a data-toggle="tab" href="#tab4">Mecanicas</a></li>-->
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /section title -->
+
+					<!-- Products tab & slick -->
+					<div class="col-md-12">
+						<div class="row">
+							<div class="products-tabs">
+								<!-- tab -->
+								<div id="tab2" class="tab-pane fade in active">
+									<div class="products-slick oferta-productos" data-nav="#slick-nav-2">
+									</div>
+									<div id="slick-nav-2" class="products-slick-nav"></div>
+								</div>
+								<!-- /tab -->
+							</div>
+						</div>
+					</div>
+					<!-- /Products tab & slick -->
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- SECTION -->
+		<div class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-4 col-xs-6">
+						<div class="section-title">
+							<h4 class="title">Más Vendidos</h4>
+							<div class="section-nav">
+								<div id="slick-nav-3" class="products-slick-nav"></div>
+							</div>
+						</div>
+
+						<div class="products-widget-slick one" data-nav="#slick-nav-3">
+						</div>
+					</div>
+
+					<div class="col-md-4 col-xs-6">
+						<div class="section-title">
+							<h4 class="title">Más Vendidos</h4>
+							<div class="section-nav">
+								<div id="slick-nav-4" class="products-slick-nav"></div>
+							</div>
+						</div>
+
+						<div class="products-widget-slick two" data-nav="#slick-nav-4">
+						</div>
+					</div>
+
+					<div class="clearfix visible-sm visible-xs"></div>
+
+					<div class="col-md-4 col-xs-6">
+						<div class="section-title">
+							<h4 class="title">Más Vendidos</h4>
+							<div class="section-nav">
+								<div id="slick-nav-5" class="products-slick-nav"></div>
+							</div>
+						</div>
+
+						<div class="products-widget-slick three" data-nav="#slick-nav-5">
+						</div>
+					</div>
+
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /SECTION -->
+
+		<!-- NEWSLETTER -->
+		<!-- <div id="newsletter" class="section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="newsletter">
+							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+							<form>
+								<input class="input" type="email" placeholder="Enter Your Email">
+								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+							</form>
+							<ul class="newsletter-follow">
+								<li>
+									<a href="#"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-instagram"></i></a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-pinterest"></i></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<!-- /NEWSLETTER -->
+
+		<!-- FOOTER -->
+		<footer id="footer">
+			<!-- top footer -->
+			<div class="section">
+				<!-- container -->
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Acerca de nosotros</h3>
+								<p>Nosotros somos una empresa de venta de ferreteria.</p>
+<!--								<ul class="footer-links">-->
+<!--									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>-->
+<!--									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>-->
+<!--									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>-->
+<!--								</ul>-->
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Categorias</h3>
+								<ul class="footer-links">
+								</ul>
+							</div>
+						</div>
+
+						<div class="clearfix visible-xs"></div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Información</h3>
+								<ul class="footer-links">
+									<li><a href="about.html">Acerca de nosotros</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-md-3 col-xs-6">
+							<div class="footer">
+								<h3 class="footer-title">Service</h3>
+								<ul class="footer-links">
+									<li><a href="#dropdown-toggle" id="miCarritoAHREF">Mi Carrito</a></li>
+<!--									<li><a href="#">Mis ordenes</a></li>-->
+									<li><a href="#">Ayuda</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /top footer -->
+
+			<!-- bottom footer -->
+			<div id="bottom-footer" class="section">
+				<div class="container">
+					<!-- row -->
+					<div class="row">
+						<div class="col-md-12 text-center">
+<!--							<ul class="footer-payments">-->
+<!--								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>-->
+<!--								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>-->
+<!--								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>-->
+<!--								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>-->
+<!--								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>-->
+<!--								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>-->
+<!--							</ul>-->
+							<span class="copyright">
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script>Todos los derechos reservados</a>
+							</span>
+						</div>
+					</div>
+						<!-- /row -->
+				</div>
+				<!-- /container -->
+			</div>
+			<!-- /bottom footer -->
+		</footer>
+		<!-- /FOOTER -->
+
+		<!-- jQuery Plugins -->
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="js/lib/jquery.min.js"></script>
+		<script src="js/lib/bootstrap.min.js"></script>
+		<script src="js/lib/slick.min.js"></script>
+		<script src="js/lib/nouislider.min.js"></script>
+		<script src="js/lib/jquery.zoom.min.js"></script>
+		<script src="https://checkout.culqi.com/js/v4"></script>
+		<script>
+			Culqi.publicKey = 'pk_test_6ce67dac328fb088';
+		</script>
+		<script src="js/index.js" type="module"></script>
+		<script src="js/helper/Common.js" type="module"></script>
+		<script>
+			function culqi() {
+				if (Culqi.token) {
+					const email = Culqi.token.email;
+					const token = Culqi.token.id;
+					fetch('http://localhost:8080/api/culqi',{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						body: JSON.stringify({
+							token: token,
+							amount: 1000,
+							email: email,
+						})}).then(res => res.json())
+							.then(data => {
+								console.log(data);
+								Swal.fire({
+									icon: 'success',
+									title: 'Compra exitosa',
+									text: 'Se ha realizado la compra exitosamente',
+								});
+							})
+							.catch(err => {
+								console.log(err);
+								Swal.fire({
+									icon: 'error',
+									title: 'Oops...',
+									text: 'No se pudo realizar la compra',
+								});
+							});
+				} else {
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: 'No se pudo generar el token',
+					});
+				}
+
+			}
+		</script>
+	</body>
+</html>

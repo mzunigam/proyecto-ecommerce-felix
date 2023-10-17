@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FerriWork</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+<style>
+    .modelo{
+        width: 100% !important;
+        height: 100% !important;
+    }
+</style>
+<body>
+
+<div id="modal-3d" style="display: none;position: fixed;height: 100%;width: 100%;justify-content: center;align-items: center;z-index: 1000;background: #00000054;">
+    <span style="position: absolute;top: 0;right: 0;padding: 10px;cursor: pointer;color: #fff;z-index: 1000" onclick="$('#modal-3d').hide()">X</span>
+    <model-viewer class="modelo" src="tool_chestglb.glb" ar ar-modes="scene-viewer webxr quick-look" camera-controls poster="poster.webp" shadow-intensity="1">
+        <div class="progress-bar hide" slot="progress-bar">
+            <div class="update-bar"></div>
+        </div>
+        <button slot="ar-button" id="ar-button">
+            View in your space
+        </button>
+        <div id="ar-prompt">
+            <img src="ar_hand_prompt.png">
+        </div>
+    </model-viewer>
+
+</div>
+
+<!-- HEADER -->
+<header>
+
+    <!-- MAIN HEADER -->
+    <div id="header">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- LOGO -->
+                <div class="col-md-3">
+                    <div class="header-logo">
+                        <a href="index.html" class="logo">
+                            <img src="./img/logo.png" alt="">
+                            <span>FerriWork</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- /LOGO -->
+
+                <!-- SEARCH BAR -->
+                <div class="col-md-6">
+                    <div class="header-search">
+                        <form>
+                            <select class="input-select search-category">
+                            </select>
+                            <input class="input search" placeholder="Busca Aquí">
+                            <button class="search-btn">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /SEARCH BAR -->
+
+                <!-- ACCOUNT -->
+                <div class="col-md-3 clearfix">
+                    <div class="header-ctn">
+                        <!-- Wishlist -->
+                        <!-- <div>
+                            <a href="#">
+                                <i class="fa fa-heart-o"></i>
+                                <span>Your Wishlist</span>
+                                <div class="qty">2</div>
+                            </a>
+                        </div> -->
+                        <!-- /Wishlist -->
+
+                        <!-- Cart -->
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Mi Carrito</span>
+                                <div class="qty">0</div>
+                            </a>
+                            <div class="cart-dropdown">
+                                <div class="cart-list">
+                                </div>
+                                <div class="cart-summary">
+                                    <small></small>
+                                    <h5></h5>
+                                </div>
+                                <div class="cart-btns">
+                                    <button class="remove-carrito">Limpiar Carrito</button>
+                                    <button id="btnComprar">Comprar <i class="fa fa-arrow-circle-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Cart -->
+
+                        <!-- Menu Toogle -->
+                        <div class="menu-toggle">
+                            <a href="#">
+                                <i class="fa fa-bars"></i>
+                                <span>Menu</span>
+                            </a>
+                        </div>
+                        <!-- /Menu Toogle -->
+                    </div>
+                </div>
+                <!-- /ACCOUNT -->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- /MAIN HEADER -->
+</header>
+<!-- /HEADER -->
+
+<!-- NAVIGATION -->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+            <!-- NAV -->
+            <ul class="main-nav nav navbar-nav">
+            </ul>
+            <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a id="categoria-a" href="store.html?categoria=">Categoria</a></li>
+                    <li class="active">Mi producto</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- Product main img -->
+            <div class="col-md-5 col-md-push-2">
+                <div id="product-main-img">
+                </div>
+            </div>
+            <!-- /Product main img -->
+
+            <!-- Product thumb imgs -->
+            <div class="col-md-2  col-md-pull-5">
+                <div id="product-imgs">
+                </div>
+            </div>
+            <!-- /Product thumb imgs -->
+
+            <!-- Product details -->
+            <div class="col-md-5">
+                <div class="product-details">
+                    <h2 class="product-name"></h2>
+                    <!--							<div>-->
+                    <!--								<div class="product-rating">-->
+                    <!--									<i class="fa fa-star"></i>-->
+                    <!--									<i class="fa fa-star"></i>-->
+                    <!--									<i class="fa fa-star"></i>-->
+                    <!--									<i class="fa fa-star"></i>-->
+                    <!--									<i class="fa fa-star-o"></i>-->
+                    <!--								</div>-->
+                    <!--								<a class="review-link" href="#">10 Review(s) | Add your review</a>-->
+                    <!--							</div>-->
+                    <div>
+                        <h3 class="product-price"><span class="price"></span>
+                            <del class="product-old-price"></del>
+                        </h3>
+                        <span class="product-available"></span>
+                    </div>
+                    <p class="product-description">
+                    </p>
+
+                    <!--							<div class="product-options">-->
+                    <!--								<label>-->
+                    <!--									Size-->
+                    <!--									<select class="input-select">-->
+                    <!--										<option value="0">X</option>-->
+                    <!--									</select>-->
+                    <!--								</label>-->
+                    <!--								<label>-->
+                    <!--									Color-->
+                    <!--									<select class="input-select">-->
+                    <!--										<option value="0">Red</option>-->
+                    <!--									</select>-->
+                    <!--								</label>-->
+                    <!--							</div>-->
+
+                    <div class="add-to-cart">
+                        <div class="qty-label">
+                            Cantidad
+                            <div class="input-number">
+                                <input class="product-quantity" type="number" value="1">
+                                <span class="qty-up">+</span>
+                                <span class="qty-down">-</span>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Añadir a carrito</button>
+                        <button class="watch-3d" style="display: none;border: none;background: #fbb941;color: white; border-radius: 1rem; padding: 0.5rem"><I class="fa fa-cube"></I> 3D</button>
+                    </div>
+
+                    <ul class="product-links">
+                        <li><b>Categoria:</b></li>
+                        <li><a href="#" class="product-category"></a></li>
+                        <li><a href="#" class="product-brand"></a></li>
+                    </ul>
+
+                    <!--							<ul class="product-links">-->
+                    <!--								<li>Share:</li>-->
+                    <!--								<li><a href="#"><i class="fa fa-facebook"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-twitter"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-envelope"></i></a></li>-->
+                    <!--							</ul>-->
+
+                </div>
+            </div>
+            <!-- /Product details -->
+
+            <!-- Product tab -->
+            <div class="col-md-12">
+                <div id="product-tab">
+                    <!-- product tab nav -->
+                    <ul class="tab-nav">
+                        <li class="active"><a data-toggle="tab" href="#tab1">Descripción</a></li>
+                        <li><a data-toggle="tab" href="#tab2">Detalles</a></li>
+                        <!--								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>-->
+                    </ul>
+                    <!-- /product tab nav -->
+
+                    <!-- product tab content -->
+                    <div class="tab-content">
+                        <!-- tab1  -->
+                        <div id="tab1" class="tab-pane fade in active">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="product-description">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                        elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                                        ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                                        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /tab1  -->
+
+                        <!-- tab2  -->
+                        <div id="tab2" class="tab-pane fade in">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="product-details-div"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /tab2  -->
+
+                        <!-- tab3  -->
+                        <!--								<div id="tab3" class="tab-pane fade in">-->
+                        <!--									<div class="row">-->
+                        <!--										&lt;!&ndash; Rating &ndash;&gt;-->
+                        <!--										<div class="col-md-3">-->
+                        <!--											<div id="rating">-->
+                        <!--												<div class="rating-avg">-->
+                        <!--													<span>4.5</span>-->
+                        <!--													<div class="rating-stars">-->
+                        <!--														<i class="fa fa-star"></i>-->
+                        <!--														<i class="fa fa-star"></i>-->
+                        <!--														<i class="fa fa-star"></i>-->
+                        <!--														<i class="fa fa-star"></i>-->
+                        <!--														<i class="fa fa-star-o"></i>-->
+                        <!--													</div>-->
+                        <!--												</div>-->
+                        <!--												<ul class="rating">-->
+                        <!--													<li>-->
+                        <!--														<div class="rating-stars">-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--														</div>-->
+                        <!--														<div class="rating-progress">-->
+                        <!--															<div style="width: 80%;"></div>-->
+                        <!--														</div>-->
+                        <!--														<span class="sum">3</span>-->
+                        <!--													</li>-->
+                        <!--													<li>-->
+                        <!--														<div class="rating-stars">-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--														</div>-->
+                        <!--														<div class="rating-progress">-->
+                        <!--															<div style="width: 60%;"></div>-->
+                        <!--														</div>-->
+                        <!--														<span class="sum">2</span>-->
+                        <!--													</li>-->
+                        <!--													<li>-->
+                        <!--														<div class="rating-stars">-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--														</div>-->
+                        <!--														<div class="rating-progress">-->
+                        <!--															<div></div>-->
+                        <!--														</div>-->
+                        <!--														<span class="sum">0</span>-->
+                        <!--													</li>-->
+                        <!--													<li>-->
+                        <!--														<div class="rating-stars">-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--														</div>-->
+                        <!--														<div class="rating-progress">-->
+                        <!--															<div></div>-->
+                        <!--														</div>-->
+                        <!--														<span class="sum">0</span>-->
+                        <!--													</li>-->
+                        <!--													<li>-->
+                        <!--														<div class="rating-stars">-->
+                        <!--															<i class="fa fa-star"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--															<i class="fa fa-star-o"></i>-->
+                        <!--														</div>-->
+                        <!--														<div class="rating-progress">-->
+                        <!--															<div></div>-->
+                        <!--														</div>-->
+                        <!--														<span class="sum">0</span>-->
+                        <!--													</li>-->
+                        <!--												</ul>-->
+                        <!--											</div>-->
+                        <!--										</div>-->
+                        <!--										&lt;!&ndash; /Rating &ndash;&gt;-->
+
+                        <!--										&lt;!&ndash; Reviews &ndash;&gt;-->
+                        <!--										<div class="col-md-6">-->
+                        <!--											<div id="reviews">-->
+                        <!--												<ul class="reviews">-->
+                        <!--													<li>-->
+                        <!--														<div class="review-heading">-->
+                        <!--															<h5 class="name">John</h5>-->
+                        <!--															<p class="date">27 DEC 2018, 8:0 PM</p>-->
+                        <!--															<div class="review-rating">-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star-o empty"></i>-->
+                        <!--															</div>-->
+                        <!--														</div>-->
+                        <!--														<div class="review-body">-->
+                        <!--															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>-->
+                        <!--														</div>-->
+                        <!--													</li>-->
+                        <!--													<li>-->
+                        <!--														<div class="review-heading">-->
+                        <!--															<h5 class="name">John</h5>-->
+                        <!--															<p class="date">27 DEC 2018, 8:0 PM</p>-->
+                        <!--															<div class="review-rating">-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star-o empty"></i>-->
+                        <!--															</div>-->
+                        <!--														</div>-->
+                        <!--														<div class="review-body">-->
+                        <!--															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>-->
+                        <!--														</div>-->
+                        <!--													</li>-->
+                        <!--													<li>-->
+                        <!--														<div class="review-heading">-->
+                        <!--															<h5 class="name">John</h5>-->
+                        <!--															<p class="date">27 DEC 2018, 8:0 PM</p>-->
+                        <!--															<div class="review-rating">-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star"></i>-->
+                        <!--																<i class="fa fa-star-o empty"></i>-->
+                        <!--															</div>-->
+                        <!--														</div>-->
+                        <!--														<div class="review-body">-->
+                        <!--															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>-->
+                        <!--														</div>-->
+                        <!--													</li>-->
+                        <!--												</ul>-->
+                        <!--												<ul class="reviews-pagination">-->
+                        <!--													<li class="active">1</li>-->
+                        <!--													<li><a href="#">2</a></li>-->
+                        <!--													<li><a href="#">3</a></li>-->
+                        <!--													<li><a href="#">4</a></li>-->
+                        <!--													<li><a href="#"><i class="fa fa-angle-right"></i></a></li>-->
+                        <!--												</ul>-->
+                        <!--											</div>-->
+                        <!--										</div>-->
+                        <!--										&lt;!&ndash; /Reviews &ndash;&gt;-->
+
+                        <!--										&lt;!&ndash; Review Form &ndash;&gt;-->
+                        <!--										<div class="col-md-3">-->
+                        <!--											<div id="review-form">-->
+                        <!--												<form class="review-form">-->
+                        <!--													<input class="input" type="text" placeholder="Your Name">-->
+                        <!--													<input class="input" type="email" placeholder="Your Email">-->
+                        <!--													<textarea class="input" placeholder="Your Review"></textarea>-->
+                        <!--													<div class="input-rating">-->
+                        <!--														<span>Your Rating: </span>-->
+                        <!--														<div class="stars">-->
+                        <!--															<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>-->
+                        <!--															<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>-->
+                        <!--															<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>-->
+                        <!--															<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>-->
+                        <!--															<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>-->
+                        <!--														</div>-->
+                        <!--													</div>-->
+                        <!--													<button class="primary-btn">Submit</button>-->
+                        <!--												</form>-->
+                        <!--											</div>-->
+                        <!--										</div>-->
+                        <!--										&lt;!&ndash; /Review Form &ndash;&gt;-->
+                        <!--									</div>-->
+                        <!--								</div>-->
+                        <!-- /tab3  -->
+                    </div>
+                    <!-- /product tab content  -->
+                </div>
+            </div>
+            <!-- /product tab -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- Section -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Nuevos Productos</h3>
+                    <div class="section-nav">
+                        <ul class="section-tab-nav tab-nav">
+<!--                            <li class="active"><a data-toggle="tab">Electricas</a></li>-->
+<!--                            <li><a data-toggle="tab">Inalambricas</a></li>-->
+<!--                            <li><a data-toggle="tab">Manuales</a></li>-->
+<!--                            <li><a data-toggle="tab">Mecanicas</a></li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /section title -->
+
+            <!-- Products tab & slick -->
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div class="tab-pane active">
+                            <div class="products-slick nuevos-productos" data-nav="#slick-nav-1">
+                            </div>
+                            <div id="slick-nav-1" class="products-slick-nav"></div>
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /Section -->
+
+<!-- NEWSLETTER -->
+<!--		<div id="newsletter" class="section">-->
+<!--			&lt;!&ndash; container &ndash;&gt;-->
+<!--			<div class="container">-->
+<!--				&lt;!&ndash; row &ndash;&gt;-->
+<!--				<div class="row">-->
+<!--					<div class="col-md-12">-->
+<!--						<div class="newsletter">-->
+<!--							<p>Sign Up for the <strong>NEWSLETTER</strong></p>-->
+<!--							<form>-->
+<!--								<input class="input" type="email" placeholder="Enter Your Email">-->
+<!--								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>-->
+<!--							</form>-->
+<!--							<ul class="newsletter-follow">-->
+<!--								<li>-->
+<!--									<a href="#"><i class="fa fa-facebook"></i></a>-->
+<!--								</li>-->
+<!--								<li>-->
+<!--									<a href="#"><i class="fa fa-twitter"></i></a>-->
+<!--								</li>-->
+<!--								<li>-->
+<!--									<a href="#"><i class="fa fa-instagram"></i></a>-->
+<!--								</li>-->
+<!--								<li>-->
+<!--									<a href="#"><i class="fa fa-pinterest"></i></a>-->
+<!--								</li>-->
+<!--							</ul>-->
+<!--						</div>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				&lt;!&ndash; /row &ndash;&gt;-->
+<!--			</div>-->
+<!--			&lt;!&ndash; /container &ndash;&gt;-->
+<!--		</div>-->
+<!-- /NEWSLETTER -->
+
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Acerca de nosotros</h3>
+                        <p>Nosotros somos una empresa de venta de ferreteria.</p>
+                        <!--								<ul class="footer-links">-->
+                        <!--									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>-->
+                        <!--									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>-->
+                        <!--									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>-->
+                        <!--								</ul>-->
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Categorias</h3>
+                        <ul class="footer-links">
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clearfix visible-xs"></div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Información</h3>
+                        <ul class="footer-links">
+                            <li><a href="about.html">Acerca de nosotros</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Service</h3>
+                        <ul class="footer-links">
+                            <li><a href="#dropdown-toggle" id="miCarritoAHREF">Mi Carrito</a></li>
+                            <!--									<li><a href="#">Mis ordenes</a></li>-->
+                            <li><a href="#">Ayuda</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <!--							<ul class="footer-payments">-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>-->
+                    <!--							</ul>-->
+                    <span class="copyright">
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script>Todos los derechos reservados</a>
+							</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.2.0/model-viewer.min.js"></script>
+<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/lib/slick.min.js"></script>
+<script src="js/lib/nouislider.min.js"></script>
+<script src="js/lib/jquery.zoom.min.js"></script>
+<script src="https://checkout.culqi.com/js/v4"></script>
+<script>
+    Culqi.publicKey = 'pk_test_6ce67dac328fb088';
+</script>
+<script src="js/helper/Common.js" type="module"></script>
+<script src="js/product.js" type="module"></script>
+<script>
+    function culqi() {
+        if (Culqi.token) {
+            const email = Culqi.token.email;
+            const token = Culqi.token.id;
+            fetch('http://localhost:8080/api/culqi',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: token,
+                    amount: 1000,
+                    email: email,
+                })}).then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Compra exitosa',
+                        text: 'Se ha realizado la compra exitosamente',
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No se pudo realizar la compra',
+                    });
+                });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No se pudo generar el token',
+            });
+        }
+
+    }
+</script>
+</body>
+</html>

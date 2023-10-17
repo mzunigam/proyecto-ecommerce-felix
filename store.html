@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FerriWork</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="css/nouislider.min.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<!-- MAIN HEADER -->
+<div id="header">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- LOGO -->
+            <div class="col-md-3">
+                <div class="header-logo">
+                    <a href="index.html" class="logo">
+                        <img src="./img/logo.png" alt="">
+                        <span>FerriWork</span>
+                    </a>
+                </div>
+            </div>
+            <!-- /LOGO -->
+
+            <!-- SEARCH BAR -->
+            <div class="col-md-6">
+                <div class="header-search">
+                    <form>
+                        <select class="input-select search-category">
+                        </select>
+                        <input class="input search" placeholder="Busca Aquí">
+                        <button class="search-btn">Buscar</button>
+                    </form>
+                </div>
+            </div>
+            <!-- /SEARCH BAR -->
+
+            <!-- ACCOUNT -->
+            <div class="col-md-3 clearfix">
+                <div class="header-ctn">
+                    <!-- Wishlist -->
+                    <!-- <div>
+                        <a href="#">
+                            <i class="fa fa-heart-o"></i>
+                            <span>Your Wishlist</span>
+                            <div class="qty">2</div>
+                        </a>
+                    </div> -->
+                    <!-- /Wishlist -->
+
+                    <!-- Cart -->
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                            <i class="fa fa-shopping-cart"></i>
+                            <span>Mi Carrito</span>
+                            <div class="qty">0</div>
+                        </a>
+                        <div class="cart-dropdown">
+                            <div class="cart-list">
+                            </div>
+                            <div class="cart-summary">
+                                <small></small>
+                                <h5></h5>
+                            </div>
+                            <div class="cart-btns">
+                                <button class="remove-carrito">Limpiar Carrito</button>
+                                <button id="btnComprar">Comprar <i class="fa fa-arrow-circle-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Cart -->
+
+                    <!-- Menu Toogle -->
+                    <div class="menu-toggle">
+                        <a href="#">
+                            <i class="fa fa-bars"></i>
+                            <span>Menu</span>
+                        </a>
+                    </div>
+                    <!-- /Menu Toogle -->
+                </div>
+            </div>
+            <!-- /ACCOUNT -->
+        </div>
+        <!-- row -->
+    </div>
+    <!-- container -->
+</div>
+<!-- /MAIN HEADER -->
+
+<!-- NAVIGATION -->
+<nav id="navigation">
+	<!-- container -->
+	<div class="container">
+		<!-- responsive-nav -->
+		<div id="responsive-nav">
+			<!-- NAV -->
+			<ul class="main-nav nav navbar-nav">
+			</ul>
+			<!-- /NAV -->
+		</div>
+		<!-- /responsive-nav -->
+	</div>
+	<!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <ul class="breadcrumb-tree">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li class="active breadcrumb-category">Busqueda</li>
+                </ul>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- ASIDE -->
+            <div id="aside" class="col-md-3">
+
+                <div class="aside">
+                    <h3>Producto</h3>
+                    <div class="input-group" style="display: flex; width: 200px" >
+                        <input type="text" class="form-control" placeholder="Buscar Producto" id="find-producto">
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary" type="button" id="find-producto-btn">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- aside Widget -->
+                <div class="aside">
+                    <h3 class="aside-title">Categorias</h3>
+                    <div class="checkbox-filter checkbox-filter-category">
+                    </div>
+                </div>
+                <!-- /aside Widget -->
+
+                <!-- aside Widget -->
+                <div class="aside">
+                    <h3 class="aside-title">Precios</h3>
+                    <div class="price-filter" style="display: flex; flex-direction: column; width: 160px">
+                        <div><b>Precio :</b> S/.<input value="500" type="number" min="1" max="9999" class="price-output form-control"></div>
+                        <div class="range">
+                            <input type="range" min="1" value="500" max="9999" class="form-range" id="priceRange" />
+                        </div>
+                    </div>
+                </div>
+                <!-- /aside Widget -->
+
+                <!-- aside Widget -->
+                <div class="aside">
+                    <h3 class="aside-title">Marcas</h3>
+                    <div class="checkbox-filter checkbox-filter-brand">
+
+                    </div>
+                </div>
+                <!-- /aside Widget -->
+
+            </div>
+            <!-- /ASIDE -->
+
+            <!-- STORE -->
+            <div id="store" class="col-md-9">
+                <!-- store top filter -->
+                <div class="store-filter clearfix">
+                    <div class="store-sort">
+                        <label>
+                            Ordenado por:
+                            <select class="input-select">
+                                <option value="0">ALFABETICO</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            Cantidad:
+                            <select class="input-select quantity-filter">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                            </select>
+                        </label>
+                    </div>
+<!--                    <ul class="store-grid">-->
+<!--                        <li class="active"><i class="fa fa-th"></i></li>-->
+<!--                        <li><a href="#"><i class="fa fa-th-list"></i></a></li>-->
+<!--                    </ul>-->
+                </div>
+                <!-- /store top filter -->
+                <div class="store-filter" style="display: flex; align-items: center; justify-content: space-between">
+                    <span class="store-qty"><b>Mostrando </b><span class="current-quantity"></span> hasta <span class="max-quantity"></span> <b>Total : </b> <span class="total-quantity"></span></span>
+                    <ul class="store-pagination pagination">
+                    </ul>
+                </div>
+                <!-- store products -->
+                <div class="row store-products">
+
+                </div>
+                <!-- /store products -->
+
+                <!-- store bottom filter -->
+                <div class="store-filter" style="display: flex; align-items: center; justify-content: space-between">
+                    <span class="store-qty"><b>Mostrando </b><span class="current-quantity"></span> hasta <span class="max-quantity"></span> <b>Total : </b> <span class="total-quantity"></span></span>
+                    <ul class="store-pagination pagination">
+                    </ul>
+                </div>
+                <!-- /store bottom filter -->
+            </div>
+            <!-- /STORE -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- FOOTER -->
+<footer id="footer">
+    <!-- top footer -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Acerca de nosotros</h3>
+                        <p>Nosotros somos una empresa de venta de ferreteria.</p>
+                        <!--								<ul class="footer-links">-->
+                        <!--									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>-->
+                        <!--									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>-->
+                        <!--									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>-->
+                        <!--								</ul>-->
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Categorias</h3>
+                        <ul class="footer-links">
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="clearfix visible-xs"></div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Información</h3>
+                        <ul class="footer-links">
+                            <li><a href="about.html">Acerca de nosotros</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-xs-6">
+                    <div class="footer">
+                        <h3 class="footer-title">Service</h3>
+                        <ul class="footer-links">
+                            <li><a href="#dropdown-toggle" id="miCarritoAHREF">Mi Carrito</a></li>
+                            <!--									<li><a href="#">Mis ordenes</a></li>-->
+                            <li><a href="#">Ayuda</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /top footer -->
+
+    <!-- bottom footer -->
+    <div id="bottom-footer" class="section">
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <!--							<ul class="footer-payments">-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>-->
+                    <!--								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>-->
+                    <!--							</ul>-->
+                    <span class="copyright">
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script>Todos los derechos reservados</a>
+							</span>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /bottom footer -->
+</footer>
+<!-- /FOOTER -->
+
+<!-- jQuery Plugins -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/lib/slick.min.js"></script>
+<script src="js/lib/nouislider.min.js"></script>
+<script src="js/lib/jquery.zoom.min.js"></script>
+<script src="https://checkout.culqi.com/js/v4"></script>
+<script>
+    Culqi.publicKey = 'pk_test_6ce67dac328fb088';
+</script>
+<script src="js/lib/hip.js"></script>
+<script src="js/helper/Common.js" type="module"></script>
+<script src="js/store.js" type="module"></script>
+<script>
+    function culqi() {
+        if (Culqi.token) {
+            const email = Culqi.token.email;
+            const token = Culqi.token.id;
+            fetch('http://localhost:8080/api/culqi',{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: token,
+                    amount: 1000,
+                    email: email,
+            })}).then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Compra exitosa',
+                        text: 'Se ha realizado la compra exitosamente',
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No se pudo realizar la compra',
+                    });
+                });
+        } else {
+         Swal.fire({
+             icon: 'error',
+             title: 'Oops...',
+             text: 'No se pudo generar el token',
+         });
+        }
+
+    }
+</script>
+</body>
+</html>
