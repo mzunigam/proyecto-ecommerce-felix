@@ -159,6 +159,39 @@ function editarDireccionExecute(id) {
     });
 }
 
+function eliminarCompra(id) {
+    const json = {
+        accion: 4,
+        id: id
+    }
+
+    Swal.fire({
+        title: '¿Está seguro?',
+        text: "¡No podrá revertir esta acción!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            HttpRequest.execProcGestionCompras(json).then(response => {
+                Swal.fire({
+                    title: '¡Éxito!',
+                    text: 'Se eliminó la compra con éxito.',
+                    icon: 'success',
+                    confirmButtonText: 'Aceptar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        listarPendientePago();
+                    }
+                });
+            });
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     DOMEvents.init()
 });
