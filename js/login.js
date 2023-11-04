@@ -47,6 +47,14 @@ const eventos = {
                 console.log(response.data[0])
                 sessionStorage.setItem('usuario', JSON.stringify(response.data[0]));
                 location.reload();
+            }else{
+                toastr["warning"]("El usuario o la contraseña son incorrectos", "Error")
+                $('#loginCorreo').addClass('is-invalid');
+                $('#loginPassword').addClass('is-invalid');
+                setTimeout(()=> {
+                    $('#loginCorreo').removeClass('is-invalid');
+                    $('#loginPassword').removeClass('is-invalid');
+                },5000)
             }
         });
     }

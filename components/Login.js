@@ -101,7 +101,7 @@ class LoginComponent extends HTMLElement {
 
         document.querySelector('.modal-login').addEventListener('click', (e) => {
             if (e.target.classList.contains('modal')) {
-                document.querySelector('.modal-login').classList.add('hidden');
+                // document.querySelector('.modal-login').classList.add('hidden');
             }
         });
 
