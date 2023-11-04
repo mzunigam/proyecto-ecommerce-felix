@@ -127,22 +127,22 @@
             <br>
             <ul class="ul-compras nav-menu">
                 <li>
-                    <a href="#"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                    <a id="btnPendientePago" href="#"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                         <h5>Pendientes de pago</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                    <a href="#"><i class="fa fa-plane" aria-hidden="true"></i>
                         <h5>Pendientes de env&iacute;o</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                    <a href="#"><i class="fa fa-truck" aria-hidden="true"></i>
                         <h5>Enviado</h5>
                     </a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+                    <a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>
                         <h5>Pendientes de valoraci&oacute;n</h5>
                     </a>
                 </li>
@@ -151,6 +151,9 @@
     </div>
 </nav>
 
+<section id="section-compras">
+
+</section>
 
 <footer id="footer">
     <!-- top footer -->
@@ -233,7 +236,6 @@
     <!-- /bottom footer -->
 </footer>
 
-
 <!-- jQuery Plugins -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/lib/jquery.min.js"></script>
@@ -242,57 +244,7 @@
 <script src="js/lib/nouislider.min.js"></script>
 <script src="js/lib/jquery.zoom.min.js"></script>
 <script src="js/lib/toastr.min.js"></script>
-<script src="https://checkout.culqi.com/js/v4"></script>
-<script>
-    Culqi.publicKey = 'pk_test_6ce67dac328fb088';
-</script>
-<script>
-    // $('#modalPerfil').modal('show');
-</script>
-<script src="js/index.js" type="module"></script>
-<script src="js/helper/Common.js" type="module"></script>
 <script src="js/login.js" type="module"></script>
-<script>
-    function culqi() {
-        if (Culqi.token) {
-            const email = Culqi.token.email;
-            const token = Culqi.token.id;
-            fetch('http://localhost:8080/api/culqi', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    token: token,
-                    amount: 1000,
-                    email: email,
-                })
-            }).then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Compra exitosa',
-                        text: 'Se ha realizado la compra exitosamente',
-                    });
-                })
-                .catch(err => {
-                    console.log(err);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'No se pudo realizar la compra',
-                    });
-                });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'No se pudo generar el token',
-            });
-        }
-
-    }
-</script>
+<script src="js/compra.js"></script>
 </body>
 </html>
