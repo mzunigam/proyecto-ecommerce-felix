@@ -94,7 +94,7 @@ function listarPendientePago() {
                 Array.from(arrayEditar).forEach(x => {
                     x.addEventListener('click', function () {
                         const id = parseInt(this.id.split('_')[1]);
-                        modalEditarPenPago(id);
+                        modalEditarDireccion(id);
                     });
                 });
 
@@ -113,7 +113,7 @@ function listarPendientePago() {
     }
 }
 
-function modalEditarPenPago(id) {
+function modalEditarDireccion(id) {
     const btnEditar = document.getElementById('btnEditarDireccion');
     btnEditar.setAttribute('data-id', id);
     const json = {
@@ -127,6 +127,7 @@ function modalEditarPenPago(id) {
                 const data = response.data[0];
                 document.getElementById('titleProductoDireccion').textContent = data.nombre;
                 document.getElementById('imgProductoDireccion').src = data.img;
+                document.getElementById('txtDireccion').value = data.direccion;
             }
         });
 
