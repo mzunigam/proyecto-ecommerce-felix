@@ -10,6 +10,10 @@
     text-align: center;
 }
 
+.btn-clickeado {
+    color: #fbb941;
+}
+
 /*Listado*/
 #section-compras {
     padding: 2rem 0;
@@ -38,7 +42,7 @@
     font-size: 1.8rem;
 }
 
-.compra-titulo{
+.compra-titulo {
     font-weight: bold;
 }
 
@@ -54,3 +58,20 @@
 }
 
 
+
+.star-rating {
+    list-style: none;
+    padding: 0;
+    display: inline-block;
+}
+
+.star {
+    display: inline-block;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc; /* Color de estrella inactiva */
+}
+
+.star.active {
+    color: #ffca28; /* Color de estrella activa */
+}

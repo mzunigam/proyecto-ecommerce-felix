@@ -1,11 +1,33 @@
 const DOMEvents = {
     init() {
         this.btnPendientePago();
+        this.btnPendienteEnvio();
+        this.btnEnviado();
+        this.btnPendienteValoracion();
         this.btnEditarDireccion();
     },
     btnPendientePago() {
         document.getElementById('btnPendientePago').addEventListener('click', function () {
-            listarPendientePago();
+            botonesNav('btnPendientePago');
+            listarCompras(0);
+        });
+    },
+    btnPendienteEnvio() {
+        document.getElementById('btnPendienteEnvio').addEventListener('click', function () {
+            botonesNav('btnPendienteEnvio');
+            listarCompras(1);
+        });
+    },
+    btnEnviado() {
+        document.getElementById('btnEnviado').addEventListener('click', function () {
+            botonesNav('btnEnviado');
+            listarCompras(2);
+        });
+    },
+    btnPendienteValoracion() {
+        document.getElementById('btnPendienteValoracion').addEventListener('click', function () {
+            botonesNav('btnPendienteValoracion');
+            listarCompras(3);
         });
     },
     btnEditarDireccion() {
@@ -14,6 +36,14 @@ const DOMEvents = {
             editarDireccionExecute(id);
         });
     }
+}
+
+function botonesNav(btn) {
+    document.querySelectorAll('.btnNav').forEach((element) => {
+        element.classList.remove('btn-clickeado');
+    });
+
+    document.getElementById(btn).classList.add('btn-clickeado');
 }
 
 // Peticiones
@@ -51,10 +81,18 @@ const HttpRequest = {
     }
 }
 
-function listarPendientePago() {
+function listarCompras(estado) {
+
+    /* estado:
+        0: Pendiente de pago
+        1: Pendiente de envio
+        2: Enviado
+        3: Pendiente de valoracion
+     */
+
     const json = {
         accion: 1,
-        estado: 0
+        estado: estado
     }
 
     try {
@@ -74,38 +112,79 @@ function listarPendientePago() {
                                 <span class="compra-precio col-md-1 text-center">S/ ${x.precio}</span>
                                 <span class="compra-cantidad col-md-2 text-center">${x.cantidad} unidad(es)</span>
                                 <span class="compra-direccion col-md-2 text-center">${x.direccion}</span>
-                                <span class="compra-fecha col-md-2 text-center">${x.fecha}</span>
-                                <span class="content-compra-accion col-md-1">
-                                    <a id="btnEditar_${x.id}" href="#" class="compra-action-editar-penPago">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    </a>
-                                    <a id="btnEliminar_${x.id}" href="#" class="compra-action-eliminar-penPago">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                </span>
-                            </li>
+                                <span class="compra-fecha col-md-2 text-center">${x.fecha}</span>`;
+
+
+                    if (estado === 0) {
+                        body += `<span class="content-compra-accion col-md-1">
+                                <a id="btnEditar_${x.id}" href="#" class="compra-action-editar-direccion">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                                <a id="btnEliminar_${x.id}" href="#" class="compra-action-eliminar-penPago">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </a>
+                            </span>`;
+                    } else if (estado === 1) {
+                        body += `<span class="content-compra-accion col-md-1">
+                                <a id="btnEditar_${x.id}" href="#" class="compra-action-editar-direccion">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </a>
+                                <a id="btnCancelarEnvio_${x.id}" href="#" class="compra-action-eliminar-penPago">
+                                    <i class="fa fa-undo" aria-hidden="true"></i>
+                                </a>
+                            </span>`;
+                    } else if (estado === 3) {
+                        body += `<span class="content-compra-accion col-md-2">
+                                    <ul id="valoracion_${x.id}" class="star-rating">
+                                        <li class="star">&#9733;</li>
+                                        <li class="star">&#9733;</li>
+                                        <li class="star">&#9733;</li>
+                                        <li class="star">&#9733;</li>
+                                        <li class="star">&#9733;</li>
+                                    </ul>
+                                </span>`;
+                    }
+
+                    body += `</li>
                         </ul>`;
                 });
                 body += `</div>`;
                 section.innerHTML = body;
 
-                // Edicion
-                const arrayEditar = document.getElementsByClassName('compra-action-editar-penPago');
-                Array.from(arrayEditar).forEach(x => {
-                    x.addEventListener('click', function () {
-                        const id = parseInt(this.id.split('_')[1]);
-                        modalEditarDireccion(id);
+                if (estado === 0) {
+                    // Edicion direccion
+                    const arrayEditar = document.getElementsByClassName('compra-action-editar-direccion');
+                    Array.from(arrayEditar).forEach(x => {
+                        x.addEventListener('click', function () {
+                            const id = parseInt(this.id.split('_')[1]);
+                            modalEditarDireccion(id);
+                        });
                     });
-                });
 
-                // Eliminacion
-                const arrayEliminar = document.getElementsByClassName('compra-action-eliminar-penPago');
-                Array.from(arrayEliminar).forEach(x => {
-                    x.addEventListener('click', function () {
-                        const id = this.id.split('_')[1];
-                        eliminarCompra(id);
+                    // Eliminacion
+                    const arrayEliminar = document.getElementsByClassName('compra-action-eliminar-penPago');
+                    Array.from(arrayEliminar).forEach(x => {
+                        x.addEventListener('click', function () {
+                            const id = this.id.split('_')[1];
+                            eliminarCompra(id);
+                        });
                     });
-                });
+                } else if (estado === 1) {
+                    // Editar direccion
+                    const arrayEditar = document.getElementsByClassName('compra-action-editar-direccion');
+                    Array.from(arrayEditar).forEach(x => {
+                        x.addEventListener('click', function () {
+                            const id = parseInt(this.id.split('_')[1]);
+                            modalEditarDireccion(id);
+                        });
+                    });
+                } else if (estado === 3) {
+                    $('.star').on('click', function () {
+                        $(this).toggleClass('active');
+                        $(this).prevAll().addClass('active');
+                        $(this).nextAll().removeClass('active');
+                    });
+                }
             }
         });
     } catch (error) {
@@ -146,6 +225,7 @@ function editarDireccionExecute(id) {
     }
 
     HttpRequest.execProcGestionCompras(json).then(response => {
+        $('#modalEditarDireccion').modal('hide');
         Swal.fire({
             title: '¡Éxito!',
             text: 'Se modificó la dirección con éxito.',
@@ -153,8 +233,8 @@ function editarDireccionExecute(id) {
             confirmButtonText: 'Aceptar'
         }).then((result) => {
             if (result.isConfirmed) {
-                $('#modalEditarDireccion').modal('hide');
-                listarPendientePago();
+                const estado = document.getElementsByClassName('btn-clickeado')[0].getAttribute('data-estado');
+                listarCompras(parseInt(estado));
             }
         });
     });
@@ -185,7 +265,7 @@ function eliminarCompra(id) {
                     confirmButtonText: 'Aceptar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        listarPendientePago();
+                        listarCompras(0);
                     }
                 });
             });
