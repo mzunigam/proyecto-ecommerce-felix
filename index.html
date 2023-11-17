@@ -16,108 +16,11 @@
     <link type="text/css" rel="stylesheet" href="css/style.css"/>
     <link type="text/css" href="./styles.css" rel="stylesheet"/>
     <script src="components/Login.js" type="module"></script>
+    <script src="components/Navbar.js" type="module"></script>
 </head>
 <body>
 <login-component></login-component>
-<header>
-    <div id="top-header">
-        <div class="container d-flex justify-content-between">
-            <ul class="header-links  pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +51 000000000</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> correo@dominio.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> Direccion de Perú</a></li>
-            </ul>
-            <ul class="header-links  pull-right">
-                <li id="miSesion" style="color: white;"><a href="#"><i class="fa fa-user-o"></i> Ingresar /
-                    Registrate</a></li>
-            </ul>
-        </div>
-    </div>
-    <!-- MAIN HEADER -->
-    <div id="header">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <!-- LOGO -->
-                <div class="col-md-3">
-                    <div class="header-logo">
-                        <a href="#" class="logo">
-                            <img src="./img/logo.png" alt="">
-                            <span>FerriWork</span>
-                        </a>
-                    </div>
-                </div>
-                <!-- /LOGO -->
-
-                <!-- SEARCH BAR -->
-                <div class="col-md-6">
-                    <div class="header-search">
-                        <form>
-                            <select class="input-select search-category">
-                            </select>
-                            <input class="input search" placeholder="Busca Aquí">
-                            <button class="search-btn">Buscar</button>
-                        </form>
-                    </div>
-                </div>
-                <!-- /SEARCH BAR -->
-
-                <!-- ACCOUNT -->
-                <div class="col-md-3 clearfix">
-                    <div class="header-ctn">
-                        <!-- Wishlist -->
-                        <!-- <div>
-                            <a href="#">
-                                <i class="fa fa-heart-o"></i>
-                                <span>Your Wishlist</span>
-                                <div class="qty">2</div>
-                            </a>
-                        </div> -->
-                        <!-- /Wishlist -->
-
-                        <!-- Cart -->
-                        <div class="dropdown">
-                            <a class="dropdown-toggle" id="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                                <i class="fa fa-shopping-cart"></i>
-                                <span>Mi Carrito</span>
-                                <div class="qty">0</div>
-                            </a>
-                            <div class="cart-dropdown">
-                                <div class="cart-list">
-                                </div>
-                                <div class="cart-summary">
-                                    <small></small>
-                                    <h5></h5>
-                                </div>
-                                <div class="cart-btns">
-                                    <button class="remove-carrito">Limpiar Carrito</button>
-                                    <button id="btnComprar">Comprar <i class="fa fa-arrow-circle-right"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Cart -->
-
-                        <!-- Menu Toogle -->
-                        <div class="menu-toggle">
-                            <a href="#">
-                                <i class="fa fa-bars"></i>
-                                <span>Menu</span>
-                            </a>
-                        </div>
-                        <!-- /Menu Toogle -->
-                    </div>
-                </div>
-                <!-- /ACCOUNT -->
-            </div>
-            <!-- row -->
-        </div>
-        <!-- container -->
-    </div>
-    <!-- /MAIN HEADER -->
-</header>
-<!-- /HEADER -->
-
+<navbar-component></navbar-component>
 <!-- NAVIGATION -->
 <nav id="navigation">
     <!-- container -->
@@ -255,43 +158,30 @@
                     <h3 class="title">OFERTAS</h3>
                     <div class="section-nav">
                         <ul class="section-tab-nav tab-nav">
-                            <!--									<li class="active"><a data-toggle="tab" href="#tab1">Electricas</a></li>-->
-                            <!--									<li><a data-toggle="tab" href="#tab2">Inalambricas</a></li>-->
-                            <!--									<li><a data-toggle="tab" href="#tab3">Manuales</a></li>-->
-                            <!--									<li><a data-toggle="tab" href="#tab4">Mecanicas</a></li>-->
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- /section title -->
 
-            <!-- Products tab & slick -->
             <div class="col-md-12">
                 <div class="row">
                     <div class="products-tabs">
-                        <!-- tab -->
                         <div id="tab2" class="tab-pane fade in active">
                             <div class="products-slick oferta-productos" data-nav="#slick-nav-2">
                             </div>
                             <div id="slick-nav-2" class="products-slick-nav"></div>
                         </div>
-                        <!-- /tab -->
                     </div>
                 </div>
             </div>
-            <!-- /Products tab & slick -->
         </div>
-        <!-- /row -->
     </div>
-    <!-- /container -->
 </div>
-<!-- /SECTION -->
 
-<!-- SECTION -->
+
+
 <div class="section">
-    <!-- container -->
     <div class="container">
-        <!-- row -->
         <div class="row">
             <div class="col-md-4 col-xs-6">
                 <div class="section-title">
@@ -326,67 +216,21 @@
                         <div id="slick-nav-5" class="products-slick-nav"></div>
                     </div>
                 </div>
-
                 <div class="products-widget-slick three" data-nav="#slick-nav-5">
                 </div>
             </div>
-
         </div>
-        <!-- /row -->
     </div>
-    <!-- /container -->
 </div>
-<!-- /SECTION -->
 
-<!-- NEWSLETTER -->
-<!-- <div id="newsletter" class="section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="newsletter">
-                    <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-                    <form>
-                        <input class="input" type="email" placeholder="Enter Your Email">
-                        <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
-                    </form>
-                    <ul class="newsletter-follow">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- /NEWSLETTER -->
-
-<!-- FOOTER -->
 <footer id="footer">
-    <!-- top footer -->
     <div class="section">
-        <!-- container -->
         <div class="container">
-            <!-- row -->
             <div class="row">
                 <div class="col-md-3 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-title">Acerca de nosotros</h3>
                         <p>Nosotros somos una empresa de venta de ferreteria.</p>
-                        <!--								<ul class="footer-links">-->
-                        <!--									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>-->
-                        <!--									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>-->
-                        <!--									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>-->
-                        <!--								</ul>-->
                     </div>
                 </div>
 
@@ -414,44 +258,25 @@
                         <h3 class="footer-title">Service</h3>
                         <ul class="footer-links">
                             <li><a href="#dropdown-toggle" id="miCarritoAHREF">Mi Carrito</a></li>
-                            <!--									<li><a href="#">Mis ordenes</a></li>-->
                             <li><a href="#">Ayuda</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <!-- /row -->
         </div>
-        <!-- /container -->
     </div>
-    <!-- /top footer -->
-
-    <!-- bottom footer -->
     <div id="bottom-footer" class="section">
         <div class="container">
-            <!-- row -->
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <!--							<ul class="footer-payments">-->
-                    <!--								<li><a href="#"><i class="fa fa-cc-visa"></i></a></li>-->
-                    <!--								<li><a href="#"><i class="fa fa-credit-card"></i></a></li>-->
-                    <!--								<li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>-->
-                    <!--								<li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>-->
-                    <!--								<li><a href="#"><i class="fa fa-cc-discover"></i></a></li>-->
-                    <!--								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>-->
-                    <!--							</ul>-->
-                    <span class="copyright">
+          <span class="copyright">
 								Copyright &copy;<script>document.write(new Date().getFullYear());</script>Todos los derechos reservados</a>
 							</span>
                 </div>
             </div>
-            <!-- /row -->
         </div>
-        <!-- /container -->
     </div>
-    <!-- /bottom footer -->
 </footer>
-<!-- /FOOTER -->
 
 <div class="modal fade" id="modalPerfil" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -464,34 +289,41 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid">
-					<div class="row">
-						<div class="col-md-12 row">
-							<div class="form-group col-md-6">
-								<label>Foto de Perfil</label>
-								<img src="ar_icon.png" class="form-control"
-									 style="height: 10rem; width: 10rem; object-fit: contain"
-								 alt=""/>
-							</div>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="txtNombres">Nombres</label>
-							<input id="txtNombres" class="form-control" placeholder="Aquí va mis nombres"/>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="txtApellidos">Apellidos</label>
-							<input id="txtApellidos" class="form-control" placeholder="Aquí va mis apellidos"/>
-						</div>
-						<div class="form-group col-md-6">
-							<label for="txtCorreo">Correo Electronico</label>
-							<input id="txtCorreo" class="form-control" placeholder="micorreo@gmail.com"/>
-						</div>
-
-					</div>
+                    <div class="row">
+                        <%--            <div class="col-md-12 row">--%>
+                        <%--              <div class="form-group col-md-6">--%>
+                            <%--                <label>Foto de Perfil</label>--%>
+                            <%--                <img src="ar_icon.png" class="form-control"--%>
+                            <%--                     style="height: 10rem; width: 10rem; object-fit: contain"--%>
+                            <%--                     alt=""/>--%>
+                            <%--              </div>--%>
+                        <%--            </div>--%>
+                        <div class="form-group col-md-6">
+                            <label for="txtNombres">Nombres</label>
+                            <input id="txtNombres" class="form-control" placeholder="Aquí va mis nombres"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtApellidos">Apellidos</label>
+                            <input id="txtApellidos" class="form-control" placeholder="Aquí va mis apellidos"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtCorreo">Correo Electronico</label>
+                            <input id="txtCorreo" class="form-control" placeholder="micorreo@gmail.com"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtTelefono">Telefono</label>
+                            <input id="txtTelefono" class="form-control" placeholder="micorreo@gmail.com"/>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="txtDireccion">Direccion <span style="color: #999; font-size: 0.7rem">(Donde se recibira los Productos)</span></label>
+                            <input id="txtDireccion" class="form-control" placeholder="micorreo@gmail.com"/>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-guardar-user">Guardar</button>
             </div>
         </div>
     </div>

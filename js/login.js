@@ -14,8 +14,23 @@ const session = {
         if(usuario){
             const usuarioObj = JSON.parse(usuario);
             $('#miSesion').html(usuarioObj.first_name + ' ' + usuarioObj.last_name);
-            $('body').on('click', '#miSesion', () => {
-                $('#modalPerfil').modal('show');
+            $('body').on('click', '#miSesion', async () => {
+                const json = {
+                    procedure :"{ CALL base.SP_FW_OBTENER_DATOS_USUARIO(?,?)}",
+                    params: [1,Number(usuarioObj.user_id)]
+                }
+                const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',json);
+                if(response.status){
+                    $('#txtCorreo').val(response.data[0].email);
+                    $('#txtNombres').val(response.data[0].first_name);
+                    $('#txtApellidos').val(response.data[0].last_name);
+                    $('#txtDireccion').val(response.data[0].address);
+                    $('#txtTelefono').val(response.data[0].phone);
+                    $('#modalPerfil').modal('show');
+                }else{
+                    toastr["warning"]("No se pudo obtener los datos del usuario", "Error")
+                }
+
             });
         }else{
             eventos.openLogin();
@@ -26,6 +41,7 @@ const session = {
 const eventos = {
     init(){
         this.btnLogin();
+        this.btnGuardarUser();
     },
     openLogin(){
         $('body').on('click', '#miSesion', () => {
@@ -41,10 +57,9 @@ const eventos = {
             const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
                 {
                     procedure: '{ CALL base.SP_FW_LOGIN(?,?,?) }',
-                    params: [1, loginCorreo, loginPassword]
+                    params: [2, loginCorreo, loginPassword]
                 });
             if(response.data.length > 0){
-                console.log(response.data[0])
                 sessionStorage.setItem('usuario', JSON.stringify(response.data[0]));
                 location.reload();
             }else{
@@ -55,6 +70,30 @@ const eventos = {
                     $('#loginCorreo').removeClass('is-invalid');
                     $('#loginPassword').removeClass('is-invalid');
                 },5000)
+            }
+        });
+    },
+    btnGuardarUser(){
+        $('.btn-guardar-user').on('click', async () => {
+            const txtCorreo = $('#txtCorreo').val() || '';
+            const txtNombres = $('#txtNombres').val() || '';
+            const txtApellidos = $('#txtApellidos').val() || '';
+            const txtDireccion = $('#txtDireccion').val() || '';
+            const txtTelefono = $('#txtTelefono').val() || '';
+            const usuario = sessionStorage.getItem('usuario');
+            const usuarioObj = JSON.parse(usuario);
+            const json = {
+                procedure :"{ CALL base.SP_FW_MODIFICAR_USUARIO(?,?,?,?,?,?,?,?) }",
+                params: [1,Number(usuarioObj.user_id),txtNombres,txtApellidos,txtCorreo,'',txtDireccion,txtTelefono]
+            }
+            const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',json);
+            console.log(response);
+            if(response.status){
+                toastr["success"]("Se modificó correctamente el usuario", "Correcto")
+                $('#modalPerfil').modal('hide');
+                setTimeout(()=> {
+                    window.location.reload();
+                },500);
             }
         });
     }

@@ -5,7 +5,7 @@ import { initializeSlick } from "./helper/slickHelper.js";
 document.addEventListener('DOMContentLoaded', () => {
     loadNuevosProductos();
     loadOfertaProductos();
-    loadMásVendidos();
+    loadMasVendidos();
     loadCollections();
 });
 
@@ -76,7 +76,7 @@ const loadCollections = async () => {
     }
 };
 
-const loadMásVendidos = async () => {
+const loadMasVendidos = async () => {
     const one = document.querySelector('.one');
     one.innerHTML = /*html*/`
     <div class="col-md-12" style="display:flex; justify-content:start; align-items:center;">

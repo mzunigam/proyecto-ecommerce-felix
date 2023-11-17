@@ -2260,3 +2260,7 @@ textarea.input {
   width: 40px;
   height: 40px;
 }
+
+#miSesion{
+  cursor: pointer;
+}
