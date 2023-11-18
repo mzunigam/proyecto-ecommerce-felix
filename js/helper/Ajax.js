@@ -6,7 +6,7 @@ export const HTTPRequest = {
                 body: JSON.stringify(json),
                 headers: {
                     'Content-Type': 'application/json',
-
+                    'mode': 'no-cors'
                 }
             });
             const data = await response.json();
