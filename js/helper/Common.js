@@ -57,7 +57,7 @@ const botonCarrito = () => {
     });
 }*/
 async function procGestionVenta(json) {
-    return await HTTPRequest.callProcedure('http://13.59.147.125:8080/backend/api/procedure',
+    return await HTTPRequest.callProcedure('13.59.147.125:8080/backend/api/procedure',
         {
             procedure: '{ CALL base.SP_FW_GESTIONAR_VENTAS(?,?,?,?,?,?,?,?) }',
             params: [json.accion,
@@ -202,7 +202,7 @@ const loadSearchCategories = async () => {
     const searchCategories = document.querySelector('.search-category');
     const navbarNav = document.querySelector('.navbar-nav');
     const footerLinks = document.querySelector('.footer-links');
-    const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/backend/api/procedure',
+    const response = await HTTPRequest.callProcedure('13.59.147.125:8080/backend/api/procedure',
         {
             procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
             params: [5, 0, 0, 0]
@@ -262,7 +262,7 @@ const btnAgregarCarrito = () => {
         const dataId = $(e.currentTarget).attr('data-id');
         console.log($(e.currentTarget))
         console.log(dataId);
-        const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/backend/api/procedure',
+        const response = await HTTPRequest.callProcedure('13.59.147.125:8080/backend/api/procedure',
             {
                 procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
                 params: [6, Number(dataId), 0, 0]
@@ -331,7 +331,7 @@ const verDetalle = () => {
 const storeCategorias = async () => {
     try {
 
-        const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/backend/api/procedure',
+        const response = await HTTPRequest.callProcedure('13.59.147.125:8080/backend/api/procedure',
             {
                 procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
                 params: [7, 0, 0, 0]
@@ -353,7 +353,7 @@ const storeCategorias = async () => {
 const storeMarcas = async () => {
     try {
 
-        const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/backend/api/procedure',
+        const response = await HTTPRequest.callProcedure('13.59.147.125:8080/backend/api/procedure',
             {
                 procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
                 params: [8, 0, 0, 0]

@@ -50,7 +50,7 @@ function botonesNav(btn) {
 const HttpRequest = {
     execProcGestionCompras(json) {
         return new Promise((resolve, reject) => {
-            fetch('http://13.59.147.125:8080/backend/api/procedure', {
+            fetch('13.59.147.125:8080/backend/api/procedure', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
