@@ -5,8 +5,8 @@ Culqi.options({
     lang: "auto",
     installments: false, // Habilitar o deshabilitar el campo de cuotas
     paymentMethods: {
-        tarjeta: true,
-        yape: false,
+        tarjeta: false,
+        yape: true,
         bancaMovil: false,
         agente: false,
         billetera: false,
@@ -36,13 +36,13 @@ const botonBuscar = () => {
 
 const botonCarrito = () => {
     $('#miCarritoAHREF').off('click').on('click', (e) => {
-    setTimeout(() => {
-    $('#dropdown-toggle')[0].click();
-    },500);
+        setTimeout(() => {
+            $('#dropdown-toggle')[0].click();
+        }, 500);
     });
 }
 
-const botonComprar = () => {
+/*const botonComprar = () => {
     $('#btnComprar').off('click').on('click', (e) => {
         const productos = JSON.parse(localStorage.getItem('micarrito') || '[]');
         const total = productos.reduce((total, producto) => { return total + ( producto.descuento > 0 ? (producto.precio - (producto.precio * (producto.descuento/100))) * producto.cantidad : producto.precio * producto.cantidad) }, 0);
@@ -54,6 +54,101 @@ const botonComprar = () => {
         });
         e.preventDefault();
         Culqi.open();
+    });
+}*/
+async function procGestionVenta(json) {
+    return await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
+        {
+            procedure: '{ CALL base.SP_FW_GESTIONAR_VENTAS(?,?,?,?,?,?,?,?) }',
+            params: [json.accion,
+                json.id_producto || 0,
+                json.can_producto || 0,
+                json.pre_producto || 0,
+                json.monto || 0,
+                json.descuento || 0,
+                json.id_cliente || 0,
+                json.id_venta || 0]
+        });
+}
+
+const botonComprar = () => {
+    $('#btnComprar').off('click').on('click', (e) => {
+
+        const productos = JSON.parse(localStorage.getItem('micarrito') || '[]');
+        const total = productos.reduce((total, producto) => {
+            return total + (producto.descuento > 0 ? (producto.precio - (producto.precio * (producto.descuento / 100))) * producto.cantidad : producto.precio * producto.cantidad)
+        }, 0);
+        const descuento = productos.reduce((totalDescuento, producto) => totalDescuento + producto.descuento, 0);
+
+
+        Culqi.settings({
+            title: 'FerriWork',
+            currency: 'PEN',  // Este parámetro es requerido para realizar pagos yape
+            amount: total * 100,  // Este parámetro es requerido para realizar pagos yape
+        });
+        e.preventDefault();
+        Culqi.open();
+
+        if (Culqi.token) {  // ¡Objeto Token creado exitosamente!
+            const token = Culqi.token.id;
+            console.log('Se ha creado un Token: ', token);
+        } else if (Culqi.order) {  // ¡Objeto Order creado exitosamente!
+            const order = Culqi.order;
+            console.log('Se ha creado el objeto Order: ', order);
+
+        } else {
+            // Mostramos JSON de objeto error en consola
+            console.log('Error : ', Culqi.error);
+        }
+
+        const json = {
+            accion: 1,
+            monto: total,
+            descuento: descuento,
+            id_cliente: 11
+        }
+
+        procGestionVenta(json).then(response => {
+            if (response.status) {
+                if (response.data.length > 0) {
+                    productos.forEach(x => {
+                        const jsonDetalle = {
+                            accion: 2,
+                            id_venta: response.data[0].id_venta,
+                            id_producto: x.producto_id,
+                            can_producto: parseInt(x.cantidad),
+                            pre_producto: x.precio
+                        }
+
+                        procGestionVenta(jsonDetalle).then(responseDetalle => {
+                            if (responseDetalle.status) {
+                                Swal.fire({
+                                    title: '¡Gracias por su compra!',
+                                    text: "Su compra se realizó con éxito",
+                                    icon: 'success',
+                                    confirmButtonColor: '#ffae26',
+                                    confirmButtonText: 'Aceptar'
+                                }).then((result) => {
+                                    localStorage.removeItem('micarrito');
+                                    loadCarrito();
+                                    window.location.href = 'index.html';
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: '¡Error!',
+                                    text: "Ocurrió un error al realizar su compra",
+                                    icon: 'error',
+                                    confirmButtonColor: '#ffae26',
+                                    confirmButtonText: 'Aceptar'
+                                });
+                            }
+                        });
+
+                    });
+                }
+            }
+        });
+
     });
 }
 
@@ -81,7 +176,9 @@ const loadCarrito = () => {
 
     const small = document.querySelector('.cart-summary small');
     const h5 = document.querySelector('.cart-summary h5');
-    const total = productos.reduce((total, producto) => { return total + ( producto.descuento > 0 ? (producto.precio - (producto.precio * (producto.descuento/100))) * producto.cantidad : producto.precio * producto.cantidad) }, 0);
+    const total = productos.reduce((total, producto) => {
+        return total + (producto.descuento > 0 ? (producto.precio - (producto.precio * (producto.descuento / 100))) * producto.cantidad : producto.precio * producto.cantidad)
+    }, 0);
     small.innerHTML = `Cantidad de productos: ${productos.length}`;
     h5.innerHTML = `Total: S/. ${total}`;
 
@@ -168,7 +265,7 @@ const btnAgregarCarrito = () => {
         const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
             {
                 procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
-                params: [6, Number(dataId),0 ,0]
+                params: [6, Number(dataId), 0, 0]
             });
         if (response.data.length > 0) {
             const data = response.data[0];
@@ -240,13 +337,13 @@ const storeCategorias = async () => {
                 params: [7, 0, 0, 0]
             });
 
-            if(response.data.length > 0){
-                const checkboxFilter = $('.checkbox-filter-category');
-                checkboxFilter.html('');
-                response.data.forEach(categoria => {
-                    checkboxFilter.append(storeCategory(categoria));
-                });
-            }
+        if (response.data.length > 0) {
+            const checkboxFilter = $('.checkbox-filter-category');
+            checkboxFilter.html('');
+            response.data.forEach(categoria => {
+                checkboxFilter.append(storeCategory(categoria));
+            });
+        }
 
     } catch (e) {
         console.log(e);
@@ -262,7 +359,7 @@ const storeMarcas = async () => {
                 params: [8, 0, 0, 0]
             });
 
-        if(response.data.length > 0){
+        if (response.data.length > 0) {
             const checkboxFilter = $('.checkbox-filter-brand');
             checkboxFilter.html('');
             response.data.forEach(categoria => {
@@ -278,24 +375,24 @@ const storeMarcas = async () => {
 
 const loader = {
     show: () => {
-            const loader = document.createElement('div');
-            loader.style.position = 'fixed';
-            loader.style.top = '0';
-            loader.style.left = '0';
-            loader.style.width = '100vw';
-            loader.style.height = '100vh';
-            loader.style.backgroundColor = 'rgba(0,0,0,0.5)';
-            loader.style.zIndex = '999999';
-            loader.style.display = 'flex';
-            loader.style.justifyContent = 'center';
-            loader.style.alignItems = 'center';
-            loader.id = 'loader';
-            loader.innerHTML = /*html*/`
+        const loader = document.createElement('div');
+        loader.style.position = 'fixed';
+        loader.style.top = '0';
+        loader.style.left = '0';
+        loader.style.width = '100vw';
+        loader.style.height = '100vh';
+        loader.style.backgroundColor = 'rgba(0,0,0,0.5)';
+        loader.style.zIndex = '999999';
+        loader.style.display = 'flex';
+        loader.style.justifyContent = 'center';
+        loader.style.alignItems = 'center';
+        loader.id = 'loader';
+        loader.innerHTML = /*html*/`
         <div class="spinner-border text-light" role="status">
             <span><img style="width: 4rem;" alt="cargando.." src="https://i.gifer.com/ZKZg.gif"></span>
         </div>
         `;
-            document.body.appendChild(loader);
+        document.body.appendChild(loader);
     },
     hide: () => {
         const loader = document.querySelector('#loader');
