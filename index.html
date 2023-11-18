@@ -179,7 +179,6 @@
 </div>
 
 
-
 <div class="section">
     <div class="container">
         <div class="row">
@@ -282,7 +281,9 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="position: relative">
-                <h5 class="modal-title" style="position: absolute">Bienvenido <span class="text-muted" id="nombre_usuario">Mauro Paolo Josue Zuñiga Mallqui</span></h5>
+                <h5 class="modal-title" style="position: absolute">Bienvenido <span class="text-muted"
+                                                                                    id="nombre_usuario">Mauro Paolo Josue Zuñiga Mallqui</span>
+                </h5>
                 <button type="button" class="close" style="float:right" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -290,14 +291,20 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="row">
-                        <%--            <div class="col-md-12 row">--%>
-                        <%--              <div class="form-group col-md-6">--%>
-                            <%--                <label>Foto de Perfil</label>--%>
-                            <%--                <img src="ar_icon.png" class="form-control"--%>
-                            <%--                     style="height: 10rem; width: 10rem; object-fit: contain"--%>
-                            <%--                     alt=""/>--%>
-                            <%--              </div>--%>
-                        <%--            </div>--%>
+                        <%--
+                        <div class="col-md-12 row">--%>
+                            <%--
+                            <div class="form-group col-md-6">--%>
+                                <%-- <label>Foto de Perfil</label>--%>
+                                <%-- <img src="ar_icon.png" class="form-control" --%>
+                                <%-- style="height: 10rem; width: 10rem; object-fit: contain"--%>
+                                <%-- alt=""/>--%>
+                                <%--
+                            </div>
+                            --%>
+                            <%--
+                        </div>
+                        --%>
                         <div class="form-group col-md-6">
                             <label for="txtNombres">Nombres</label>
                             <input id="txtNombres" class="form-control" placeholder="Aquí va mis nombres"/>
@@ -342,51 +349,62 @@
     Culqi.publicKey = 'pk_test_6ce67dac328fb088';
 </script>
 <script>
-	// $('#modalPerfil').modal('show');
+    // $('#modalPerfil').modal('show');
 </script>
 <script src="js/index.js" type="module"></script>
 <script src="js/helper/Common.js" type="module"></script>
 <script src="js/login.js" type="module"></script>
 <script>
-    function culqi() {
+    async function culqi() {
+        Culqi.validationPaymentMethods();
+        var paymentTypeAvailable = Culqi.paymentOptionsAvailable;
+        if (paymentTypeAvailable.token.available) {
+            paymentTypeAvailable.token.generate();
+        }
+        // Crea el objeto Token con Culqi JS
+        if (paymentTypeAvailable.yape.available) {
+            paymentTypeAvailable.yape.generate();
+        }
+        // Crea cip
+        if (paymentTypeAvailable.cip.available) {
+            paymentTypeAvailable.cip.generate();
+        }
+        // Crea el link de cuotéalo
+        if (paymentTypeAvailable.cuotealo.available) {
+            paymentTypeAvailable.cuotealo.generate();
+        }
+        console.log(Culqi.paymentOptionsAvailable);
         if (Culqi.token) {
-            const email = Culqi.token.email;
-            const token = Culqi.token.id;
-            fetch('http://localhost:8080/api/culqi', {
+            const json = JSON.stringify({
+                "amount": 10000,
+                "currency_code": "PEN",
+                "email": "richard@piedpiper.com",
+                "source_id": Culqi.token.id,
+                "capture": true,
+                "description": "Prueba",
+                "installments": 2,
+                "metadata": {
+                    "dni": "70202170"
+                },
+                "antifraud_details": {
+                    "address": "Avenida Lima 213",
+                    "address_city": "Lima",
+                    "country_code": "PE",
+                    "first_name": "Richard",
+                    "last_name": "Hendricks",
+                    "phone_number": "999999987"
+                },
+            });
+            const resp = await fetch("https://api.culqi.com/v2/charges", {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Authorization": "Bearer sk_test_2ea802f6eb0c2b07",
+                    "Content-type": "application/json"
                 },
-                body: JSON.stringify({
-                    token: token,
-                    amount: 1000,
-                    email: email,
-                })
-            }).then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Compra exitosa',
-                        text: 'Se ha realizado la compra exitosamente',
-                    });
-                })
-                .catch(err => {
-                    console.log(err);
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'No se pudo realizar la compra',
-                    });
-                });
-        } else {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'No se pudo generar el token',
+                body: json
             });
+            console.log(resp);
         }
-
     }
 </script>
 </body>
