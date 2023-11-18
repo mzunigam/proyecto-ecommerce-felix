@@ -50,7 +50,7 @@ const addToCarrito = async (json) => {
 const loadNuevosProductos = async () => {
     const nuevosProductos = document.querySelector('.nuevos-productos');
     nuevosProductos.innerHTML = '';
-    const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
+    const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',
         {
             procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
             params: [1,0,0,0]
@@ -93,7 +93,7 @@ const loadProductQuery = async () => {
 
     try{
         
-    const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
+    const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',
         {
             procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
             params: [6,Number(id),0,0]

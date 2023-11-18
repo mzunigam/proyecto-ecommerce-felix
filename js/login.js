@@ -19,7 +19,7 @@ const session = {
                     procedure :"{ CALL base.SP_FW_OBTENER_DATOS_USUARIO(?,?)}",
                     params: [1,Number(usuarioObj.user_id)]
                 }
-                const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',json);
+                const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',json);
                 if(response.status){
                     $('#txtCorreo').val(response.data[0].email);
                     $('#txtNombres').val(response.data[0].first_name);
@@ -54,7 +54,7 @@ const eventos = {
         $('body').on('click', '#btnEntrar', async() => {
             const loginCorreo = $('#loginCorreo').val() || '';
             const loginPassword = $('#loginPassword').val() || '';
-            const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
+            const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',
                 {
                     procedure: '{ CALL base.SP_FW_LOGIN(?,?,?) }',
                     params: [2, loginCorreo, loginPassword]
@@ -86,7 +86,7 @@ const eventos = {
                 procedure :"{ CALL base.SP_FW_MODIFICAR_USUARIO(?,?,?,?,?,?,?,?) }",
                 params: [1,Number(usuarioObj.user_id),txtNombres,txtApellidos,txtCorreo,'',txtDireccion,txtTelefono]
             }
-            const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',json);
+            const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',json);
             console.log(response);
             if(response.status){
                 toastr["success"]("Se modificó correctamente el usuario", "Correcto")

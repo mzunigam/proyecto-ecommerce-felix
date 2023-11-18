@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const loadNuevosProductos = async () => {
     const nuevosProductos = document.querySelector('.nuevos-productos');
     nuevosProductos.innerHTML = '';
-    const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
+    const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',
     {
         procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
         params: [1,0,0,0]
@@ -38,7 +38,7 @@ const loadNuevosProductos = async () => {
 const loadOfertaProductos = async () => {
     const ofertaProductos = document.querySelector('.oferta-productos');
     ofertaProductos.innerHTML = '';
-    const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
+    const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',
     {
         procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
         params: [2,0,0,0]
@@ -64,7 +64,7 @@ const loadOfertaProductos = async () => {
 const loadCollections = async () => {
 
     const collections = document.querySelector('.collections');
-    const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
+    const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',
         {
             procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
             params: [4,0,0,0]
@@ -96,7 +96,7 @@ const loadMasVendidos = async () => {
         <img src="https://cdn-icons-png.flaticon.com/512/6134/6134065.png" style="height:5rem">
     </div>`;
 
-    const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/api/procedure',
+    const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',
         {
             procedure: '{ CALL base.SP_FW_OBTENER_PRODUCTOS(?,?,?,?)}',
             params: [3,0,0,0]
