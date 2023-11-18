@@ -50,7 +50,7 @@ function botonesNav(btn) {
 const HttpRequest = {
     execProcGestionCompras(json) {
         return new Promise((resolve, reject) => {
-            fetch('https://ferreriwork.com:8443/backend/api/procedure', {
+            fetch('http://13.59.147.125:8080/backend/api/procedure', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

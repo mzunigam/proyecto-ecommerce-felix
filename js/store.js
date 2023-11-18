@@ -92,7 +92,7 @@ const loadStoreProducts = async () => {
     let categorias = $('.category-checkbox:checked').get().map((e) => $(e).val()).join(',');
     let marcas = $('.brand-checkbox:checked').get().map((e) => $(e).val()).join(',');
 
-    const response = await HTTPRequest.callProcedure('https://ferreriwork.com:8443/backend/api/procedure',
+    const response = await HTTPRequest.callProcedure('http://13.59.147.125:8080/backend/api/procedure',
         {
             "procedure": "{ CALL base.SP_FW_CONSULTAR_STORE(?,?,?,?,?) }",
             "params": [1, categorias, marcas, price, productName]
